@@ -22,7 +22,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
-            storage.new()
+            storage.new(self)
 
     def __str__(self) -> str:
         """string representation of base model"""
@@ -32,7 +32,7 @@ class BaseModel:
     def save(self):
         """update the time of the model"""
         self.updated_at = datetime.now()
-        storage.save(self)
+        storage.save()
 
     def to_dict(self):
         """dictionnary representation"""
