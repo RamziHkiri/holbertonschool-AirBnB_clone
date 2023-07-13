@@ -3,10 +3,11 @@
 import json
 
 
+
 class FileStorage:
     """define the file storage methods and fields"""
 
-    __file_path = ""
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -27,13 +28,15 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file to __objects"""
+        from models.base_model import BaseModel
+
         try:
-            with open(FileStorage.__file_path, 'r', encoding="utf-8") as f:
+            with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
                 data = json.loads(f.read())
                 for key in data.keys():
                     value = data[key]
                     FileStorage.__objects[key] = eval(
-                        value["__class__"])(**value)
+                        value['__class__'])(**value)
                 return FileStorage.__objects
-        except IOError:
+        except:
             return{}
