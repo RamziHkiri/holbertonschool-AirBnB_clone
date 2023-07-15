@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """define the user model"""
 from models.base_model import BaseModel
+import json
 
 
 class User(BaseModel):
